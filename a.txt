@@ -1,3 +1,5 @@
 https://segmentfault.com/a/1190000016554033?utm_source=tag-newest
 
 &serverTimezone=GMT%2B8
+
+http://localhost:8080/druid/
