@@ -1,5 +1,6 @@
 package com.example.springbootquartzdemo;
 
+import com.alibaba.fastjson.JSON;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -44,16 +45,15 @@ public class QuartzTest {
 
     @Test
     public void testAddJob() {
-        MultiValueMap multiValueMap = new LinkedMultiValueMap();
         Map<String,String> paramsMap = new HashMap<>();
         paramsMap.put("jobName","testJob");
         paramsMap.put("jobGroup","JobOne");
         paramsMap.put("startTime","2019-08-15 10:00:00");
         paramsMap.put("cronExpression","0/1 * * * * ? *");
         paramsMap.put("invokeParam","param");
-        multiValueMap.setAll(paramsMap);
+        final String param = JSON.toJSONString(paramsMap);
         try {
-            MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/addJob").params(multiValueMap))
+            MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.post("/addJob").contentType(MediaType.APPLICATION_JSON).content(param))
                     .andReturn();
             LOGGER.info(mvcResult.getResponse().getContentAsString());
         } catch (Exception e) {

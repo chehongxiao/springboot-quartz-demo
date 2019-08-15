@@ -5,10 +5,7 @@ import com.example.springbootquartzdemo.entity.AppQuartz;
 import com.example.springbootquartzdemo.entity.ReturnMsg;
 import com.example.springbootquartzdemo.service.impl.AppQuartzService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class JobController {
@@ -99,6 +96,12 @@ public class JobController {
     public ReturnMsg repauseAllJob() throws Exception {
         jobUtil.resumeAllJob();
         return new ReturnMsg("200","success repauseAll");
+    }
+
+    //查看状态
+    @RequestMapping(value="/getJobState",method=RequestMethod.GET)
+    public String getJobState(@RequestParam String jobName, @RequestParam String jobGroup) throws Exception {
+        return jobUtil.getJobState(jobName,jobGroup);
     }
 
 }
