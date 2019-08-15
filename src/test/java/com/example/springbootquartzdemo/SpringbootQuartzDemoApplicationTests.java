@@ -1,8 +1,11 @@
 package com.example.springbootquartzdemo;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.example.springbootquartzdemo.entity.AppQuartz;
+import com.example.springbootquartzdemo.service.IAppQuartzService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -21,6 +24,9 @@ public class SpringbootQuartzDemoApplicationTests {
     @Resource
     DataSource dataSource;
 
+    @Autowired
+    IAppQuartzService appQuartzService;
+
     @Test
     public void contextLoads() throws SQLException {
         System.out.println("数据源>>>>>>" + dataSource.getClass());
@@ -35,6 +41,17 @@ public class SpringbootQuartzDemoApplicationTests {
 
         connection.close();
 
+    }
+
+    @Test
+    public void testService(){
+        AppQuartz appQuartz = new AppQuartz();
+        appQuartz.setJobName("job1");
+        appQuartz.setCronExpression("0 0 0");
+        appQuartz.setJobGroup("group1");
+        appQuartz.setInvokeParam("param");
+        appQuartz.setStartTime("2019-08-15");
+        appQuartzService.insertAppQuartzSer(appQuartz);
     }
 
 }

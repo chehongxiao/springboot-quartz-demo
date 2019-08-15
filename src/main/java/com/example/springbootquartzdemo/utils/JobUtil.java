@@ -1,4 +1,4 @@
-package com.example.springbootquartzdemo.config;
+package com.example.springbootquartzdemo.utils;
 
 import com.example.springbootquartzdemo.entity.AppQuartz;
 import com.example.springbootquartzdemo.job.JobOne;

@@ -12,5 +12,6 @@ public class JobOne implements Job {
         JobDataMap data=context.getTrigger().getJobDataMap();
         String invokeParam =(String) data.get("invokeParam");
         //在这里实现业务逻辑
+        System.out.println("开始执行======================"+System.currentTimeMillis());
     }
 }

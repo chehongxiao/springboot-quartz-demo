@@ -1,6 +1,6 @@
 package com.example.springbootquartzdemo.controller;
 
-import com.example.springbootquartzdemo.config.JobUtil;
+import com.example.springbootquartzdemo.utils.JobUtil;
 import com.example.springbootquartzdemo.entity.AppQuartz;
 import com.example.springbootquartzdemo.entity.ReturnMsg;
 import com.example.springbootquartzdemo.service.impl.AppQuartzService;

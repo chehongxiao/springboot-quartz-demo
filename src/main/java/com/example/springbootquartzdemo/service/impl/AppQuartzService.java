@@ -1,30 +1,37 @@
 package com.example.springbootquartzdemo.service.impl;
 
 import com.example.springbootquartzdemo.entity.AppQuartz;
+import com.example.springbootquartzdemo.mapper.IAppQuartzMapper;
 import com.example.springbootquartzdemo.service.IAppQuartzService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class AppQuartzService implements IAppQuartzService {
+
+    @Autowired
+    private IAppQuartzMapper appQuartzMapper;
+
     @Override
     public void insertAppQuartzSer(AppQuartz appQuartz) {
-
+        appQuartzMapper.insertAppQuartz(appQuartz);
     }
 
     @Override
     public List<AppQuartz> selectAppQuartzByIdSer(Integer quartzId) {
-        return null;
+        List<AppQuartz> appQuartzs = appQuartzMapper.selectAppQuartzById(quartzId);
+        return appQuartzs;
     }
 
     @Override
     public void deleteAppQuartzByIdSer(Integer quartzId) {
-
+        appQuartzMapper.deleteAppQuartzById(quartzId);
     }
 
     @Override
     public void updateAppQuartzSer(AppQuartz appQuartz) {
-
+        appQuartzMapper.updateAppQuartz(appQuartz);
     }
 }
