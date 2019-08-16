@@ -132,7 +132,7 @@ public class JobUtil {
             trigger = trigger.getTriggerBuilder().withIdentity(triggerKey)
                     .withSchedule(scheduleBuilder).build();
             //修改参数
-            if(!trigger.getJobDataMap().get("invokeParam").equals(appQuartz.getInvokeParam())) {
+            if(appQuartz.getInvokeParam()!=null) {
                 trigger.getJobDataMap().put("invokeParam",appQuartz.getInvokeParam());
             }
             //按新的trigger重新设置job执行

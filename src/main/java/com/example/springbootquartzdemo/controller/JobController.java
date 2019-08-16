@@ -4,10 +4,15 @@ import com.example.springbootquartzdemo.utils.JobUtil;
 import com.example.springbootquartzdemo.entity.AppQuartz;
 import com.example.springbootquartzdemo.entity.ReturnMsg;
 import com.example.springbootquartzdemo.service.impl.AppQuartzService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 @RestController
+@RequestMapping(value="/job")
 public class JobController {
     @Autowired
     private JobUtil jobUtil;
@@ -59,8 +64,8 @@ public class JobController {
 
 
     //删除job
-    @RequestMapping(value="/deletJob",method=RequestMethod.POST)
-    public ReturnMsg deletjob(@RequestBody Integer[]quartzIds) throws Exception {
+    @RequestMapping(value="/deletejob",method=RequestMethod.POST)
+    public ReturnMsg deletejob(@RequestBody Integer[]quartzIds) throws Exception {
         AppQuartz appQuartz=null;
         for(Integer quartzId:quartzIds) {
             appQuartz=appQuartzService.selectAppQuartzByIdSer(quartzId).get(0);
@@ -102,6 +107,16 @@ public class JobController {
     @RequestMapping(value="/getJobState",method=RequestMethod.GET)
     public String getJobState(@RequestParam String jobName, @RequestParam String jobGroup) throws Exception {
         return jobUtil.getJobState(jobName,jobGroup);
+    }
+
+    @RequestMapping(value="/queryjob",method=RequestMethod.GET)
+    public Map<String, Object> queryjob(@RequestParam(value="pageNum")Integer pageNum, @RequestParam(value="pageSize")Integer pageSize)
+    {
+        PageInfo<AppQuartz> job = appQuartzService.selectAppQuartzByPage(pageNum, pageSize);
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("job", job);
+        map.put("number", job.getTotal());
+        return map;
     }
 
 }
