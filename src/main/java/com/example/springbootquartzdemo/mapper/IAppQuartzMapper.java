@@ -10,7 +10,7 @@ import java.util.List;
 @Component(value = "appQuartzMapper")
 public interface IAppQuartzMapper {
 
-    @Insert("INSERT INTO app_quartz (job_name, job_group, start_time, cron_expression, invoke_param, state) VALUES (#{jobName}, #{jobGroup}, #{startTime}, #{cronExpression}, #{invokeParam}), '0'")
+    @Insert("INSERT INTO app_quartz (job_name, job_group, start_time, cron_expression, invoke_param, state) VALUES (#{jobName}, #{jobGroup}, #{startTime}, #{cronExpression}, #{invokeParam}, '1')")
     void insertAppQuartz(AppQuartz appQuartz);
 
     @Select("SELECT t.quartz_id as quartzId,t.job_name as jobName,t.job_group as jobGroup,t.cron_expression as cronExpression,t.invoke_param as invokeParam,t.state FROM app_quartz t where t.quartz_id=#{id}")
