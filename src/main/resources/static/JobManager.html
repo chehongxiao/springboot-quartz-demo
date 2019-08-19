@@ -78,11 +78,13 @@
 		      	<el-button
 		          size="small"
 		          type="warning"
+				  :disabled="scope.row.state =='0'"
 		          @click="handlePause(scope.$index, scope.row)">暂停</el-button>
 		          
 		        <el-button
 		          size="small"
 		          type="info"
+				  :disabled="scope.row.state =='1'"
 		          @click="handleResume(scope.$index, scope.row)">恢复</el-button>
 		          
 		        <el-button
@@ -100,6 +102,7 @@
 		  
 		  <div align="center">
 			  <el-pagination
+				  background
 			      @size-change="handleSizeChange"
 			      @current-change="handleCurrentChange"
 			      :current-page="currentPage"
@@ -191,7 +194,7 @@
 		    data: {		  
 		    	//表格当前页数据
 		    	tableData: [],
-		        
+
 		        //请求的URL
 		        url:'job/queryjob',
 		        

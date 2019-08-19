@@ -40,6 +40,8 @@ public class JobController {
             for(Integer quartzId:quartzIds) {
                 appQuartz=appQuartzService.selectAppQuartzByIdSer(quartzId).get(0);
                 jobUtil.pauseJob(appQuartz.getJobName(), appQuartz.getJobGroup());
+                appQuartz.setState("0");
+                appQuartzService.updateAppQuartzStateSer(appQuartz);
             }
             return new ReturnMsg("200","success pauseJob");
         }else {
@@ -55,6 +57,8 @@ public class JobController {
             for(Integer quartzId:quartzIds) {
                 appQuartz=appQuartzService.selectAppQuartzByIdSer(quartzId).get(0);
                 jobUtil.resumeJob(appQuartz.getJobName(), appQuartz.getJobGroup());
+                appQuartz.setState("1");
+                appQuartzService.updateAppQuartzStateSer(appQuartz);
             }
             return new ReturnMsg("200","success resumeJob");
         }else {

@@ -7,6 +7,15 @@ public class AppQuartz {
     private String startTime;  //任务开始时间
     private String cronExpression;  //corn表达式
     private String invokeParam;//需要传递的参数
+    private String state;//任务状态0暂停1运行
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
 
     public Integer getQuartzId() {
         return quartzId;

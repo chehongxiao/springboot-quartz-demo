@@ -11,4 +11,5 @@ public interface IAppQuartzService {
     void deleteAppQuartzByIdSer(Integer quartzId);
     void updateAppQuartzSer(AppQuartz appQuartz);
     PageInfo<AppQuartz> selectAppQuartzByPage(int pageNum, int pageSize);
+    void updateAppQuartzStateSer(AppQuartz appQuartz);
 }

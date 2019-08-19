@@ -45,4 +45,9 @@ public class AppQuartzService implements IAppQuartzService {
         return page;
     }
 
+    @Override
+    public void updateAppQuartzStateSer(AppQuartz appQuartz) {
+        appQuartzMapper.updateAppQuartzState(appQuartz);
+    }
+
 }
